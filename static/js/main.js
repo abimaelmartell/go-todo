@@ -18,13 +18,22 @@
     });
 
     app.controller('MainController', function(Todo, $scope) {
-        Todo.query()
-            .success(function(response) {
-            });
+        $scope.fetchTodos = function() {
+            Todo.query()
+                .success(function(response) {
+                    $scope.todos = response;
+                });
+        };
 
         $scope.addTodo = function() {
             Todo.create($scope.newTodo)
+                .success(function() {
+                    $scope.fetchTodos();
+                    $scope.newTodo = null;
+                });
         }
+
+        $scope.fetchTodos();
     });
 
 })();

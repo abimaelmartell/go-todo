@@ -5,15 +5,23 @@
         <meta name="viewport" content="width=device-width">
         <title>Todo List</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/main.css" />
     </head>
     <body>
         <div class="container" ng-controller="MainController">
 
             <form ng-submit="addTodo()">
-                <input ng-model="newTodo" type="text" name="name" id="name" class="form-control" />
-                <button type="submit" class="btn btn-primary">Add</button>
+                <div class="input-group">
+                    <input ng-model="newTodo" type="text" name="name" id="name" class="form-control input-lg" />
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-primary btn-lg">Add</button>
+                    </span>
+                </div>
             </form>
 
+            <div class="list-group">
+                <a href="#" class="list-group-item" ng-repeat="todo in todos">{{ todo.name }}</a>
+            </div>
         </div>
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js"></script>
