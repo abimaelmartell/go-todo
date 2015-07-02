@@ -8,6 +8,12 @@
     </head>
     <body>
         <div class="container" ng-controller="MainController">
+
+            <form ng-submit="addTodo()">
+                <input ng-model="newTodo" type="text" name="name" id="name" class="form-control" />
+                <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+
         </div>
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js"></script>

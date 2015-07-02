@@ -10,13 +10,21 @@
             return $http.get('todos');
         };
 
+        Todo.create = function(name) {
+            return $http.post('todos', { name: name });
+        }
+
         return Todo;
     });
 
-    app.controller('MainController', function(Todo) {
+    app.controller('MainController', function(Todo, $scope) {
         Todo.query()
             .success(function(response) {
             });
+
+        $scope.addTodo = function() {
+            Todo.create($scope.newTodo)
+        }
     });
 
 })();
