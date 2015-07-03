@@ -12,7 +12,7 @@
 
             <form ng-submit="addTodo()">
                 <div class="input-group">
-                    <input ng-model="newTodo" type="text" name="name" id="name" class="form-control input-lg" />
+                    <input ng-model="newTodo" type="text" name="name" id="name" class="form-control input-lg" required />
                     <span class="input-group-btn">
                         <button type="submit" class="btn btn-primary btn-lg">Add</button>
                     </span>
@@ -20,7 +20,11 @@
             </form>
 
             <div class="list-group">
-                <a href="#" class="list-group-item" ng-repeat="todo in todos">{{ todo.name }}</a>
+                <a class="list-group-item" ng-repeat="todo in todos | orderBy:'created_at':true">
+                    <input type="checkbox" ng-model="todo.done" ng-change="updateTodo(todo.id)" />
+                    <span>{{ todo.name }}</span>
+                    <span ng-click="deleteTodo(todo.id)" class="glyphicon glyphicon-trash pull-right"></span>
+                </a>
             </div>
         </div>
 

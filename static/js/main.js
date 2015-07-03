@@ -14,6 +14,14 @@
             return $http.post('todos', { name: name });
         }
 
+        Todo.update = function(id, params) {
+            return $http.put('todos?id=' + id, params);
+        }
+
+        Todo.delete = function(id) {
+            return $http.delete('todos?id=' + id);
+        }
+
         return Todo;
     });
 
@@ -31,6 +39,14 @@
                     $scope.fetchTodos();
                     $scope.newTodo = null;
                 });
+        }
+
+        $scope.updateTodo = function(id) {
+            Todo.update(id, { done: true })
+        }
+
+        $scope.deleteTodo = function(id) {
+            Todo.delete(id);
         }
 
         $scope.fetchTodos();

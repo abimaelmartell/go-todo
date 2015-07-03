@@ -10,8 +10,8 @@ func main() {
     http.Handle("/", fs)
 
 
-    // This handles GET and POST
-    http.HandleFunc("/todos", lib.TodoIndex)
+    // This handles GET and POST and PUT
+    http.HandleFunc("/todos", lib.TodoController)
 
     http.ListenAndServe(":4567", nil)
 
