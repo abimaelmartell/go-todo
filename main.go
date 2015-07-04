@@ -3,6 +3,7 @@ package main
 import (
     "net/http"
     "github.com/abimaelmartell/go-todo/lib"
+    "os"
 )
 
 func main() {
@@ -13,6 +14,11 @@ func main() {
     // This handles GET and POST and PUT
     http.HandleFunc("/todos", lib.TodoController)
 
-    http.ListenAndServe(":4567", nil)
+    port := "4567"
 
+    if os.Getenv("PORT") != "" {
+        port = os.Getenv("PORT")
+    }
+
+    http.ListenAndServe(":" + port, nil)
 }
