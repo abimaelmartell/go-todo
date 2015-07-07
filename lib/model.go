@@ -1,15 +1,12 @@
 package lib
 
 import (
-    "time"
 )
 
 type Todo struct {
     Id int                `json:"id"`
     Done bool             `json:"done"`
     Name string           `json:"name"`
-    CreatedAt time.Time   `json:"created_at"`
-    CompletedAt time.Time `json:"completed_at"`
 }
 
 type Todos []Todo;
@@ -21,7 +18,6 @@ func GetAllTodos () Todos{
 }
 
 func CreateNewTodo (todo Todo) bool {
-    todo.CreatedAt = time.Now();
 
     if len(todos) == 0 {
         todo.Id = 1
@@ -42,7 +38,8 @@ func UpdateTodo (id int, todoParams Todo) bool {
             currentTodo := &todos[i]
             if currentTodo.Done == false && todoParams.Done == true {
                 currentTodo.Done = true
-                currentTodo.CompletedAt = time.Now()
+            } else if currentTodo.Done == true && todoParams.Done == false{
+                currentTodo.Done = false
             }
 
             break;
