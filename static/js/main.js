@@ -41,12 +41,14 @@
                 });
         }
 
-        $scope.updateTodo = function(id) {
-            Todo.update(id, { done: true })
+        $scope.updateTodo = function(todo) {
+            Todo.update(todo.id, { done: !todo.done })
+                .success($scope.fetchTodos);
         }
 
         $scope.deleteTodo = function(id) {
-            Todo.delete(id);
+            Todo.delete(id)
+                .success($scope.fetchTodos);
         }
 
         $scope.fetchTodos();

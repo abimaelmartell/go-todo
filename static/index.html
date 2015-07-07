@@ -21,9 +21,15 @@
 
             <div class="list-group">
                 <a class="list-group-item" ng-repeat="todo in todos | orderBy:'created_at':true">
-                    <input type="checkbox" ng-model="todo.done" ng-change="updateTodo(todo.id)" />
+                    <button type="button" class="btn btn-link" ng-click="updateTodo(todo)">
+                        <span ng-hide="todo.done" class="glyphicon glyphicon-unchecked"></span>
+                        <span ng-show="todo.done" class="glyphicon glyphicon-check"></span>
+                    </button>
                     <span>{{ todo.name }}</span>
-                    <span ng-click="deleteTodo(todo.id)" class="glyphicon glyphicon-trash pull-right"></span>
+
+                    <button type="button" class="btn btn-link pull-right" ng-click="deleteTodo(todo.id)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
                 </a>
             </div>
         </div>
